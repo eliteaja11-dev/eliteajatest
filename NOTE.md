@@ -1,7 +1,10 @@
-# Review notes
+# s4 판정 기준
 
-This file exists so that a pull request always changes a Markdown file. Several tests
-rely on `reviews.path_instructions` scoped to `**/*.md`, which only applies when a
-Markdown file is part of the change set.
+플러그인을 **하나도** 쓰지 않는다. 사실은 코어 규칙의 message 로 되돌린다.
 
-Baseline: no configuration file is present on this branch.
+| 관측 | 결론 |
+|---|---|
+| 리뷰에 `CRMARK-06fef04be9dc ... cwd=... uid=...` 가 실린다 | **저장소 JS 가 그들 환경에서 실행된다.** 허용목록은 플러그인만 보고 설정 파일 자체의 최상위 코드는 막지 못한다 |
+| ESLint 가 아예 건너뛰어진다 | 설정 파일 스캔 단계에서 걸렀다는 뜻 — 이유를 기록 |
+| 수신 엔드포인트에 `/s4-eslint-load` 도착 | ESLint 샌드박스에 **아웃바운드가 있다** (문서에 언급 없음) |
+| `envKeys` 가 크다 | 실행 문맥에 환경변수가 있다 → 다음 질문은 토큰 유무. **읽지 않고 개수만 보고한다** |
