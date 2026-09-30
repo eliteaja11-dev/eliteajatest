@@ -14,3 +14,11 @@ export function chunk(items, size) {
   }
   return out;
 }
+
+export function titleCase(input) {
+  return String(input)
+    .split(/\s+/)
+    .filter(Boolean)
+    .map((w) => w[0].toUpperCase() + w.slice(1).toLowerCase())
+    .join(' ');
+}
