@@ -1,7 +1,12 @@
-# Review notes
+# s4b 판정 기준 — s4 의 등급을 정하기 위한 문맥
 
-This file exists so that a pull request always changes a Markdown file. Several tests
-rely on `reviews.path_instructions` scoped to `**/*.md`, which only applies when a
-Markdown file is part of the change set.
+s4(PR #5)로 **실행 + 아웃바운드**는 확정됐다. s4b 는 그 실행이 얼마나 특권적인지만 본다.
 
-Baseline: no configuration file is present on this branch.
+| 도착한 값 | 의미 |
+|---|---|
+| `root=true` / `uid=0` | **root 실행** — 등급이 크게 올라간다 |
+| `envCount` 가 크다 | 실행 문맥에 환경변수가 있다. 토큰 유무는 **묻지 않고 멈춘다**(값을 읽지 않는 것이 규율) |
+| `cwd` | 체크아웃 경로. 공유 호스트인지 판단 재료 |
+| 도착 없음 | s4 가 재현되지 않는다는 뜻 → s4 결과를 재검토해야 한다 |
+
+**하지 않는 것**: 파일시스템 탐색, 환경변수 이름/값 수집, 다른 저장소·테넌트 탐색.
