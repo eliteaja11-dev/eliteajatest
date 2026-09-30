@@ -1,7 +1,15 @@
-# Review notes
+# s8 판정 기준 — 수동 저장소 링크에 소유자 검증이 있는가
 
-This file exists so that a pull request always changes a Markdown file. Several tests
-rely on `reviews.path_instructions` scoped to `**/*.md`, which only applies when a
-Markdown file is part of the change set.
+| 관측 | 결론 |
+|---|---|
+| 설정이 수락되고(`Source: .coderabbit.config.ts`) 봇이 `actions/checkout` 을 읽은 흔적 | **소유자 검증 없음.** 같은 기전이 비공개 저장소에도 적용되는지가 다음 질문이 된다 |
+| 스키마 오류 / 값 거부 | 형식 문제. 값 모양을 고쳐 재시험 |
+| 수락되었으나 "접근할 수 없다"는 취지의 응답 | 검증이 있다 (음성 기록) |
+| 수락되었고 아무 언급도 없다 | 판정 불가 — 링크가 실제로 쓰였는지 확인할 신호가 없다. `@coderabbitai` 로 직접 물어 확인한다 |
 
-Baseline: no configuration file is present on this branch.
+## 다음 단계로 이어지는 것
+문서는 **자동** 링크에만 "공개 저장소는 공개 저장소만" 을 적용한다고 밝혔다.
+수동 링크가 그 규칙 밖이라면, **공개 저장소의 PR 리뷰에 비공개 저장소 내용이 실릴 수 있다.**
+그 시험에는 우리 소유의 비공개 저장소 하나가 필요하다(아직 없음).
+
+**하지 않는 것**: 남의 비공개 저장소 지정. 공개 저장소로 검증 유무만 본다.
