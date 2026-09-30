@@ -14,3 +14,7 @@ export function chunk(items, size) {
   }
   return out;
 }
+
+export function compact(xs) {
+  return xs.filter((x) => x !== null && x !== undefined);
+}
