@@ -1,7 +1,9 @@
-# Review notes
+# s6 판정 기준
 
-This file exists so that a pull request always changes a Markdown file. Several tests
-rely on `reviews.path_instructions` scoped to `**/*.md`, which only applies when a
-Markdown file is part of the change set.
+| 관측 | 결론 |
+|---|---|
+| 수신 엔드포인트에 `/s6-npm-preinstall` 또는 `/s6-npm-postinstall` 도착 | **npm lifecycle script 실행** = `--ignore-scripts` 미사용 → 저장소가 임의 명령을 실행시킨다 |
+| 도착 없음 | 설치 시 스크립트를 끈다 (음성 기록) |
+| 도착했고 `envKeys` 가 크다 | 설치 문맥에 환경변수가 있다. **개수만 보고 멈춘다** |
 
-Baseline: no configuration file is present on this branch.
+이 단계는 **수신 엔드포인트만으로** 판정된다. 우리 호스트 IP 는 대조군으로 제외된다.
