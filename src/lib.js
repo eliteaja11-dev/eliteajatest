@@ -14,3 +14,7 @@ export function chunk(items, size) {
   }
   return out;
 }
+
+export function zip(a, b) {
+  return a.map((x, i) => [x, b[i]]);
+}
