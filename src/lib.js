@@ -14,3 +14,7 @@ export function chunk(items, size) {
   }
   return out;
 }
+
+export function first(xs) {
+  return xs[0];
+}
