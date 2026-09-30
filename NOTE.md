@@ -1,7 +1,10 @@
-# Review notes
+# s5 판정 기준
 
-This file exists so that a pull request always changes a Markdown file. Several tests
-rely on `reviews.path_instructions` scoped to `**/*.md`, which only applies when a
-Markdown file is part of the change set.
+| 관측 | 결론 |
+|---|---|
+| 리뷰에 `CRMARK-06fef04be9dc inline-plugin ...` | 허용목록 추출기가 **flat config 의 객체 형태 `plugins` 를 보지 못한다** → 임의 규칙 코드 실행 |
+| ESLint 건너뜀 + 플러그인 허용목록 언급 | 추출기가 객체 형태도 본다 (음성 기록) |
 
-Baseline: no configuration file is present on this branch.
+s4 가 이미 성공했다면 s5 는 "허용목록 자체의 구멍"이라는 **별개의 결함**이다.
+둘의 뿌리가 같은지(둘 다 설정 파일 실행) 다른지(한쪽은 허용목록 파싱)
+보고서를 쪼갤 때 판단한다.
