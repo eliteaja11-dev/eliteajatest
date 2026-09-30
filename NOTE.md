@@ -1,7 +1,11 @@
-# Review notes
+# s2b 판정 기준
 
-This file exists so that a pull request always changes a Markdown file. Several tests
-rely on `reviews.path_instructions` scoped to `**/*.md`, which only applies when a
-Markdown file is part of the change set.
+`./a/../../coderabbit/base.yaml` — 정규화하면 저장소 루트 **밖**의 형제 경로.
 
-Baseline: no configuration file is present on this branch.
+| 관측 | 결론 |
+|---|---|
+| 값이 실려 나온다 | 루트 탈출 성립. 대상이 비공개 중앙 설정 저장소면 **인가 우회** |
+| "rejected" 류 오류 | 통제 동작 (음성 기록) |
+| "silently clamped" 흔적(루트 안 파일을 읽은 듯한 값) | 문서가 하지 않겠다고 한 동작 — 그 자체로 기록 |
+
+주의: 이 단계는 `a/` 디렉터리가 저장소에 있어야 정규화 경로가 성립한다.
