@@ -1,7 +1,9 @@
-# Review notes
+# s4d 판정 기준 — 결함인가 아닌가를 가른다
 
-This file exists so that a pull request always changes a Markdown file. Several tests
-rely on `reviews.path_instructions` scoped to `**/*.md`, which only applies when a
-Markdown file is part of the change set.
+| 도착한 값 | 결론 |
+|---|---|
+| `suspicious_total=0` 이고 `long_values` 가 0~1 | 실행 문맥에 자격증명이 없다. → **s4 는 보고 가치가 낮다.** 그대로 음성 기록하고 다른 축으로 간다 |
+| `n_github>0` 또는 `n_token>0` 등이 0 이 아니다 | **저장소가 넣은 코드가 자격증명이 있는 문맥에서 실행되고 외부로 나갈 수 있다.** 이건 보고할 결함이다. 여기서 **멈춘다** — 값은 읽지 않고, 벤더가 확인하도록 사실만 쓴다 |
+| `long_values` 가 여러 개 | 자격증명일 가능성. 위와 같이 사실만 보고한다 |
 
-Baseline: no configuration file is present on this branch.
+**전송하지 않는 것**: 환경변수 이름, 환경변수 값, 파일 내용.
