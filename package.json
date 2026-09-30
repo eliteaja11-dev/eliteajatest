@@ -1,0 +1,10 @@
+{
+  "name": "cr-probe",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "ESLint 를 돌게 하려면 package.json 이 eslint 를 의존성으로 선언해야 한다 (문서: \"Please ensure that all ESLint dependencies are defined in your package.json file(s)\")",
+  "devDependencies": {
+    "eslint": "^9.0.0"
+  }
+}
