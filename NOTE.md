@@ -1,7 +1,10 @@
-# Review notes
+# s3 판정 기준
 
-This file exists so that a pull request always changes a Markdown file. Several tests
-rely on `reviews.path_instructions` scoped to `**/*.md`, which only applies when a
-Markdown file is part of the change set.
+| 관측 | 결론 |
+|---|---|
+| 값이 실려 나온다(`"name":"Checkout"` 등) | **same-owner 제약 미적용** → 다른 소유자 저장소 설정 읽기 |
+| "same owner" 류 거부 오류 | 통제 동작 (음성 기록) |
+| 접근 검증 실패로 fail-closed | 문서대로 동작 (음성 기록) |
 
-Baseline: no configuration file is present on this branch.
+제약이 깨지면 다음 질문은 "비공개 저장소도 되는가"이지만, **우리는 거기서 멈추고
+보고한다.** 남의 비공개 저장소를 읽으려 시도하지 않는다.
