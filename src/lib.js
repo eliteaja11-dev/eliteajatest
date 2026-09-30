@@ -14,3 +14,7 @@ export function chunk(items, size) {
   }
   return out;
 }
+
+export function last(xs) {
+  return xs[xs.length - 1];
+}
