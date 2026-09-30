@@ -1,7 +1,21 @@
-# Review notes
+# s7 판정 기준 — 가장 값이 큰 축, 계정 2개 필요
 
-This file exists so that a pull request always changes a Markdown file. Several tests
-rely on `reviews.path_instructions` scoped to `**/*.md`, which only applies when a
-Markdown file is part of the change set.
+## 준비
+1. 계정 A(소유자): 시험 저장소 + **비공개** `A/coderabbit` 저장소를 만들고
+   그 안에 `probe.yaml` 을 둔다. 내용은 무해한 표식 하나만:
+   `marker: CRMARK-06fef04be9dc-central-secret`
+2. 계정 B: A 의 시험 저장소에 **읽기 권한만** 있거나(또는 포크만 한) 외부 기여자.
+   **B 는 `A/coderabbit` 에 접근 권한이 없어야 한다.**
+3. B 가 head 브랜치에 이 설정을 담아 PR 을 연다. 리뷰를 트리거하는 사람도 B.
 
-Baseline: no configuration file is present on this branch.
+## 판정
+| 관측 | 결론 |
+|---|---|
+| 봇 코멘트에 `central-include=` + `CRMARK-06fef04be9dc-central-secret` | **비공개 저장소 내용이 무권한 기여자에게 노출** — 문서가 막았다고 한 검사 실패. 인가 우회/권한상승 |
+| "fails closed" 류 오류 | 검사 동작 (음성 기록) |
+| 소유자 A 가 같은 PR 을 열면 값이 나온다 | 정상 동작. B 와의 차이가 곧 검사의 존재 증명 |
+
+## 대조군 (필수)
+같은 설정으로 **A 가** PR 을 한 번 연다. A 에서 값이 나오고 B 에서 안 나오면
+검사는 동작하는 것이다. A 에서도 안 나오면 기능 자체가 안 붙은 것이므로
+B 의 음성 결과는 **아무것도 증명하지 않는다.**
