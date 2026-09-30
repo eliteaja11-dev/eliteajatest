@@ -1,7 +1,10 @@
-# Review notes
+# s2 판정 기준
 
-This file exists so that a pull request always changes a Markdown file. Several tests
-rely on `reviews.path_instructions` scoped to `**/*.md`, which only applies when a
-Markdown file is part of the change set.
+저장소에 커밋되는 심볼릭 링크: `probe/hostname.yaml -> /etc/hostname`
 
-Baseline: no configuration file is present on this branch.
+| 관측 | 결론 |
+|---|---|
+| 봇 코멘트에 `CRMARK-06fef04be9dc symlink-include-resolved="..."` 에 호스트명이 실린다 | **번들러의 저장소 밖 파일 읽기** — 문서가 막았다고 한 통제 실패 |
+| 설정 오류(경로 거부) | 통제 동작 (음성 기록) |
+| 설정 오류(YAML 파싱 실패) | 읽기는 **됐다**는 뜻일 수 있다 — 오류 문구를 그대로 보존하고 판단 |
+| 링크를 무시하고 빈 값 | 저장소 트리를 API 로만 읽는 구조 — 음성 기록 |
