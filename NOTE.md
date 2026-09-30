@@ -1,7 +1,10 @@
-# Review notes
+# s4c 판정 기준 — 이그레스가 내부에도 닿는가
 
-This file exists so that a pull request always changes a Markdown file. Several tests
-rely on `reviews.path_instructions` scoped to `**/*.md`, which only applies when a
-Markdown file is part of the change set.
+| 도착한 값 | 의미 |
+|---|---|
+| `meta_ip=200:...` 또는 `meta_dns=200:...` | **클라우드 메타데이터 도달 = SSRF.** 등급이 올라간다. 여기서 **멈추고 보고한다** — 자격증명 경로는 요청하지 않는다 |
+| `meta_*=err:...` + `ext_ctrl=200:...` | 외부는 되고 내부는 막혀 있다. 이그레스는 열려 있으나 SSRF 는 아니다 (음성 기록) |
+| 전부 `err:` | 이 실행 경로에서 네트워크가 안 되는 것 → s4/s4b 와 모순. 재검토 |
+| 도착 없음 | 최상위 `async` 실행이 lint 완료 전에 끊겼을 가능성. 동기 경로로 바꿔 재시험 |
 
-Baseline: no configuration file is present on this branch.
+**하지 않는 것**: 응답 본문 전송, `/service-accounts/` 요청, 내부 포트/주소 스캔.
